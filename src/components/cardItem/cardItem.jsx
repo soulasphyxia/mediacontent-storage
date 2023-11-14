@@ -8,7 +8,7 @@ function CardItem({date, value}) {
         <p>{date}</p>
         <div className={styles.border}>
 
-            {value.map(el => el.videoUrl ? (
+            {value.map(el => el.mediaFilePath ? (
                 <div className={styles.videoCard}>
                   <Link to={`/card/${el.id}`}>
                     <h2 className={styles.title}>{el.title}</h2>

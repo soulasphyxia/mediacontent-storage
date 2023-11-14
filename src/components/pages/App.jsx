@@ -8,13 +8,12 @@ import { Route, Routes } from 'react-router-dom'
 
 function App() {
 
-  const groups = useMyData()
+  const items = useMyData()
 
   return (
       <>
         <Header/>
           <Routes>
-
             <Route path="/" element={
               <div className={styles.content}>
                 <div className={styles.drawer}>
@@ -22,8 +21,8 @@ function App() {
                 </div>
     
                 <div className={styles.display}>
-                  {Object.keys(groups).map(key => (
-                    <CardItem key={key} date={key} value={groups[key]}/>
+                  {Object.keys(items).map(key => (
+                    <CardItem key={key} date={key} value={items[key]}/>
                   ))}
                 </div>
               </div>

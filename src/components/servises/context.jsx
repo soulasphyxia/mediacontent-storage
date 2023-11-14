@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from 'react';
+import axios from 'axios';
 
-let jsonData = [
+let jsonData = [  
     {
      "id": 1,
      "title": "Матери разных сортов: должно ли государство поощрять \"роды до 30\"",
@@ -81,8 +82,14 @@ let jsonData = [
       "date": "2023-21-09T20:34:30+00:00",
       "videoUrl": "1"
      },
-
 ]
+
+let numOfArticles = 19
+
+async function fetchData() {
+  return await axios.get('http://localhost:8081/api/v1/articles').then((response) => response.data);
+}
+const temp = await fetchData();
 
 const MyDataContext = createContext();
 
@@ -90,20 +97,21 @@ export function useMyData() {
   return useContext(MyDataContext);
 }
 
+const groups = temp.reduce((acc, curr) => { //no sort first - first date that was found
+  const date = curr.date.split('T')[0];
+  if (!acc[date]) {
+    acc[date] = [];
+  }
+  acc[date].push(curr);
+  return acc;
+}, []);
+
 export function MyDataProvider({ children }) {
-  //const [items, setItems] = useState(jsonData);
+  const [items, setItems] = useState(groups);
   //const dates = items.reduce((acc, curr) => {{acc.indexOf(curr.date) < 0 && acc.push(curr.date)}; return acc}, [])
-  const groups = jsonData.reduce((acc, curr) => { //no sort first - first date that was found
-    const date = curr.date.split('T')[0];
-    if (!acc[date]) {
-      acc[date] = [];
-    }
-    acc[date].push(curr);
-    return acc;
-  }, []);
 
   return (
-    <MyDataContext.Provider value={groups}>
+    <MyDataContext.Provider value={items}>
       {children}
     </MyDataContext.Provider>
   );
