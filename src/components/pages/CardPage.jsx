@@ -20,8 +20,8 @@ function CardPage() {
         <>
         {loading ? (
         <div className={styles.loading}>
-            <svg class={styles.spinner} viewBox="0 0 50 50">
-                <circle class={styles.path} cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+            <svg className={styles.spinner} viewBox="0 0 50 50">
+                <circle className={styles.path} cx="25" cy="25" r="20" fill="none" strokeWidth="5"></circle>
             </svg>
         </div>
         ) : (
@@ -29,7 +29,13 @@ function CardPage() {
             <h1>{obj.title}</h1>
             <div className={styles.content}>
                 <p>{obj.content}</p>
-                <video controls preload width="500px"src={obj.mediaFilePath}></video>
+
+                <div className={styles.media}>
+                    {obj.mediaFilePath.includes(".mp4") ? 
+                    <video controls preload src={obj.mediaFilePath}></video> :
+                    <img src={obj.mediaFilePath} alt="" />}
+                </div>
+                
             </div>
         </div>
         )}

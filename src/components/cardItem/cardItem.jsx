@@ -5,7 +5,7 @@ function CardItem({date, value}) {
 
   return (
     <div className={styles.wrapper}>
-        <p>{date}</p>
+        <p className={styles.date}>{date}</p>
         <div className={styles.border}>
 
             {value.map(el => el.mediaFilePath ? (
