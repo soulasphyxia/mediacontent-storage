@@ -23,6 +23,14 @@ header{
     .signIn{
         height: 10vh;
         width: 15%;
-        background-color: rgb(160, 193, 255); //temp color
+        background-color: rgba(117, 197, 238, 1);
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        &>*{
+            font-family: 'Oswald';
+            font-weight: 400;
+            font-size: 30px;
+        }
     }
 }

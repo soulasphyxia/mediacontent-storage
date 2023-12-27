@@ -15,7 +15,9 @@ function CardItem({date, value}) {
                     <div className={styles.contentWrap}>
                       <p className={styles.content}>{el.content}</p>
                       <div className={styles.imgWrap}>
-                        <img height='125px' src="2.png"/>
+                        {el.mediaFilePath.includes(".mp4") ? 
+                        <video controls src={el.mediaFilePath}></video> :
+                        <img src={el.mediaFilePath} alt="" />}
                       </div>
                     </div>
                   </Link>

@@ -6,10 +6,10 @@ function Header() {
     <header>
       <div className={styles.textRight}>
         <Link to={"/"}>Home page</Link>
-        
       </div>
+
       <div className={styles.signIn}>
-        sign in 
+        <Link to={"/"}>Sign in</Link>
       </div>
     </header>
   )
