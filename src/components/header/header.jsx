@@ -9,7 +9,7 @@ function Header() {
       </div>
 
       <div className={styles.signIn}>
-        <Link to={"/"}>Sign in</Link>
+        <Link to={"/admin"}>Admin Page</Link>
       </div>
     </header>
   )

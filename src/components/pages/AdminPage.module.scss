@@ -1,0 +1,16 @@
+.wrapper{
+    margin: 30px;
+}
+.post{
+    padding: 0 30px 0 30px;
+    display: grid;
+    flex-direction: row;
+    border: 1px solid black;
+    grid-template-columns: 25% 25% 25% 25%;
+    &>*{
+        text-align: center;
+    }
+}
+h3{
+    cursor: pointer;
+}

@@ -8,6 +8,9 @@ import { Route, Routes } from 'react-router-dom'
 import { useInView } from 'react-intersection-observer'
 import { useEffect } from 'react'
 import debounce from 'lodash.debounce';
+import AdminPage from './AdminPage'
+import EditPost from './EditPost'
+import CreatePost from './CreatePost'
 
 function App() {
   const {ref, inView} = useInView({
@@ -15,9 +18,8 @@ function App() {
   })
   
   const {items, itemsActions} = useMyData()
-
   const groups = items.reduce((acc, curr) => { //no sort first - first date that was found
-    const date = curr.date.split('T')[0];
+    const date = curr.createdAt.split('T')[0];
     if (!acc[date]) {
       acc[date] = [];
     }
@@ -54,7 +56,10 @@ function App() {
               
             }/>
 
-            <Route path="/card/:cardId" Component={CardPage}/>
+            <Route path="/post/:postId" Component={CardPage}/>
+            <Route path="/admin" Component={AdminPage}/>
+            <Route path="/editPost/:postId" Component={EditPost}/>
+            <Route path="/createPost" Component={CreatePost}/>
           </Routes>
           
       </>

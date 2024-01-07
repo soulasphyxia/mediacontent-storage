@@ -10,7 +10,7 @@ function CardItem({date, value}) {
 
             {value.map(el => el.mediaFilePath ? (
                 <div className={styles.videoCard}>
-                  <Link to={`/card/${el.id}`}>
+                  <Link to={`/post/${el.id}`}>
                     <h2 className={styles.title}>{el.title}</h2>
                     <div className={styles.contentWrap}>
                       <p className={styles.content}>{el.content}</p>
@@ -28,7 +28,7 @@ function CardItem({date, value}) {
                 </div>
             ) : (
               <div className={styles.card}>
-                <Link to={`/card/${el.id}`}>
+                <Link to={`/post/${el.id}`}>
                   <h2 className={styles.title}>{el.title}</h2>
                   <p className={styles.content}>{el.content}</p>
                 </Link> 

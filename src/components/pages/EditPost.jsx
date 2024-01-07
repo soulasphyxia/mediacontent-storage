@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import styles from "./CardPage.module.scss"
 
-function CardPage() {
+function EditPost() {
     const location = useLocation()
     const id = location.pathname.split('/')[2]
     const [obj, setObj] = useState({title: "", content: "", tags: "", ceratedAt: "", mediaFilePath: ""})
@@ -16,6 +16,15 @@ function CardPage() {
         getItem()
     }, [])
 
+    const saveEdit = async(evt) => {
+        evt.preventDefault()
+        const myFormData = new FormData()
+        myFormData.append("title", evt.target[0].value)
+        myFormData.append("content", evt.target[1].value)
+
+        await axios.patch(`https://video-storage-api-production.up.railway.app/api/v1/dashboard/patch/${id}`, myFormData)
+    }
+
     return (
         <>
         {loading ? (
@@ -26,21 +35,22 @@ function CardPage() {
         </div>
         ) : (
         <div className={styles.wrapper}>
-            <h1>{obj.title}</h1>
-            <div className={styles.content}>
-                <p>{obj.content}</p>
-
-                <div className={styles.media}>
-                    {obj.mediaFilePath.includes(".mp4") ? 
-                    <video controls preload src={obj.mediaFilePath}></video> :
-                    <img src={obj.mediaFilePath} alt="" />}
-                </div>
+            <form method="post" onSubmit={saveEdit}>
+                <span>
+                    <p>Title: </p>
+                    <input type="text" placeholder={obj.title}/>
+                </span>
+                <span>
+                    <p>Content: </p>
+                    <textarea rows={10} cols={50} placeholder={obj.content}/>
+                </span>
+                <input type="submit"/>
                 
-            </div>
+            </form>
         </div>
         )}
         </>
     )
 }
 
-export default CardPage
+export default EditPost

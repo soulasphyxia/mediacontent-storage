@@ -1,10 +1,10 @@
 import { createContext, useContext, useState } from 'react';
 import axios from 'axios';
 
-let pageNum = 1
+let pageNum = 0
 
 async function fetchData() {
-  return await axios.get(`http://localhost:8081/api/v1/articles?pagesCount=${pageNum}`).then((response) => response.data);
+  return await axios.get(`https://video-storage-api-production.up.railway.app/api/v1/posts?page=${pageNum}`).then((response) => response.data.content);
 }
 const temp = await fetchData();
 
